@@ -5,6 +5,9 @@
   ],
   "rules": {
     "react/prop-types": "off",
-    "no-unused-vars": "warn"
+    "no-unused-vars": "warn",
+    "semi": "error",
+    "quotes": ["error", "single"],
+    "comma-dangle": ["error", "always-multiline"]
   }
 }
