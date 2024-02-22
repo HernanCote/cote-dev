@@ -28,15 +28,15 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="h-full flex items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
-      <div className="hidden md:flex gap-8 w-1/3">
+    <div className="h-full flex items-center justify-between px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 text-xl">
+      <div className="hidden md:flex gap-4 xl:gap-8 w-1/3">
         {links.map((link, idx) => (
           <NavLink {...link} key={idx}/>
         ))}
       </div>
-      <div className="md:hidden lg:flex md:w-1/3 justify-center">
+      <div className="md:hidden lg:flex xl:w-1/3 xl:justify-center">
         <Link href="/" className="text-sm bg-black rounded-md p-1 font-semibold flex justify-center items-center"> 
-          <span className="text-white mr-1">hc</span>
+          <span className="text-white mr-1">Cote</span>
           <span className="w-12 h-8 rounded bg-white text-black flex justify-center items-center">.dev</span>
         </Link>
       </div>
