@@ -1,8 +1,12 @@
 import React from 'react';
 
+import { PageAnimation } from '@/components/common';
+
 const PortfolioPage = () => {
   return (
-    <div>Portfolio</div>
+    <PageAnimation>
+      <div>Portfolio</div>
+    </PageAnimation>
   );
 };
 

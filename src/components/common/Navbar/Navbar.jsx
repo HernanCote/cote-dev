@@ -2,26 +2,18 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+
 import NavLink from './NavLink';
 
-const links = [
-  {
-    url: '/',
-    title: 'Home',
-  },
-  {
-    url: '/about',
-    title: 'About',
-  },
-  {
-    url: '/portfolio',
-    title: 'Portfolio',
-  },
-  {
-    url: '/contact',
-    title: 'Contact',
-  },
-];
+import links from './links';
+import { 
+  topVariants, 
+  centerVariants, 
+  bottomVariants, 
+  listVariants, 
+  listItemVariants,
+} from './animationVariants';
 
 const Navbar = () => {
 
@@ -56,22 +48,44 @@ const Navbar = () => {
           onClick={() => setIsOpen(prev => !prev)}
           className="w-10 h-8 flex flex-col justify-between z-50 relative"
         >
-          <div className="w-10 h-1 bg-black rounded"></div>
-          <div className="w-10 h-1 bg-black rounded"></div>
-          <div className="w-10 h-1 bg-black rounded"></div>
+          <motion.div 
+            variants={topVariants} 
+            animate={isOpen ? 'opened' : 'closed'} 
+            className="w-10 h-1 bg-black rounded origin-left"
+          ></motion.div>
+          <motion.div 
+            variants={centerVariants} 
+            animate={isOpen ? 'opened' : 'closed'} 
+            className="w-10 h-1 bg-black rounded"
+          ></motion.div>
+          <motion.div 
+            variants={bottomVariants} 
+            animate={isOpen ? 'opened' : 'closed'} 
+            className="w-10 h-1 bg-black rounded origin-left"
+          ></motion.div>
         </button>
         {isOpen && (
-          <div className="absolute top-0 left-0 w-screen h-screen bg-black text-white flex flex-col items-center justify-center gap-8 text-4xl">
+          <motion.div 
+            className="absolute top-0 left-0 w-screen h-screen bg-black text-white flex flex-col items-center justify-center gap-8 text-4xl z-40"
+            variants={listVariants}
+            initial="closed"
+            animate="opened"
+          >
             {links.map(({ title, url }, idx) => (
-              <Link 
-                href={url} 
+              <motion.div 
                 key={idx}
-                className="hover:text-gray-400 transition-all duration-300 ease-in-out"
+                variants={listItemVariants}
               >
-                {title}
-              </Link>
+                <Link 
+                  key={idx}
+                  href={url} 
+                  className="hover:text-gray-400 transition-all duration-300 ease-in-out"
+                >
+                  {title}
+                </Link>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
       </div>
     </div>

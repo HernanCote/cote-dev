@@ -1,8 +1,12 @@
 import React from 'react';
 
+import { PageAnimation } from '@/components/common';
+
 const AboutPage = () => {
   return (
-    <div>About</div>
+    <PageAnimation>
+      <div>About</div>
+    </PageAnimation>
   );
 };
 
