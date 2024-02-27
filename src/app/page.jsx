@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import Image from 'next/image';
+import Link from 'next/link';
 import { PageAnimation } from '@/components/common';
 
 const Homepage = () => {
@@ -15,8 +16,8 @@ const Homepage = () => {
             Code my canvas, craft your vision. I'm not just a developer, I'm a <strong>Software Craftsman</strong>, Architect, and Full-Stack Developer, building the hidden magic that powers captivating experiences. Front-end finesse meets back-end brilliance, weaving seamless interactions with user delight in mind. Let's push the boundaries, together.
           </p>
           <div className="w-full flex gap-4">
-            <button className="p-4 rounded-lg ring-1 ring-black bg-black text-white">View My Work</button>
-            <button className="p-4 rounded-lg ring-1 ring-black">Contact Me</button>
+            <Link href="/portfolio"><button className="p-4 rounded-lg ring-1 ring-black bg-black text-white">View My Work</button></Link>
+            <Link href='/contact'><button className="p-4 rounded-lg ring-1 ring-black">Contact Me</button></Link>
           </div>
         </div>
       </div>

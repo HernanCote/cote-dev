@@ -10,11 +10,11 @@ const TransitionProvider = ({
 }) => {
   
   const pathName = usePathname().substring(1);
-  let path = pathName ? pathName.charAt(0).toUpperCase() + pathName.slice(1) : 'Home';
+  let path = pathName.charAt(0).toUpperCase() + pathName.slice(1);
 
   return (
     <AnimatePresence mode="wait">
-      <div key={pathName} className="w-screen h-screen bg-gradient-to-b from-blue-50 to-red-100">
+      <div key={pathName} className="w-screen h-screen bg-gradient-to-b from-blue-100 to-red-100">
         <motion.div 
           className='h-screen w-screen fixed bg-black rounded-b-[100px] z-30'
           animate={{ height: 0 }}

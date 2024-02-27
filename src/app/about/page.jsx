@@ -1,17 +1,27 @@
 'use client';
-import React from 'react';
+import React, { useRef } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, useInView, useScroll } from 'framer-motion';
 
 
 import { PageAnimation } from '@/components/common';
-// import Brain from '@/components/Brain';
 
 import { experiences, skills } from './data';
 import Brain from '@/components/Brain';
 
 
 const AboutPage = () => {
+
+  const containerRef = useRef();
+
+  const { scrollYProgress } = useScroll({ container: containerRef });
+
+  const skillRef = useRef();
+  const isSkillRefInView = useInView(skillRef, { once: true, margin: '100px' });
+
+
+  const experienceRef = useRef();
+  const isExperienceRefRefInView = useInView(experienceRef, { once: true, margin: '100px' });
 
   const Experience = ({ 
     title, company, description, date, link, 
@@ -26,7 +36,7 @@ const AboutPage = () => {
 
   return (
     <PageAnimation>
-      <div className='h-full overflow-scroll lg:flex' >
+      <div className='h-full overflow-scroll lg:flex' ref={containerRef}>
         <div className="p-4 sm:p-8 md:p-12 lg:p-20 xl:p-48 flex flex-col gap-24 md:gap-32 lg:gap-48 xl:gap-64 lg:w-2/3 lg:pr-0 xl:w-2/3">
           <div className='flex flex-col gap-12 justify-center'>
             <h1 className='font-bold text-2xl'>BIOGRAPHY</h1>
@@ -84,7 +94,7 @@ const AboutPage = () => {
               ></path>
             </motion.svg>
           </div>
-          <div className='flex flex-col gap-12 justify-center'>
+          <motion.div className='flex flex-col gap-12 justify-center' ref={skillRef} initial={{x: '-300px', opacity: 0 }} animate={isSkillRefInView ? { x: 0, opacity: 1 } : {}} transition={{duration: 0.5, delay: 0.2}}>
             <h1 className='font-bold text-2xl'>SKILLS</h1>
             <div className='flex gap-4 flex-wrap'>
               {skills.map((skill, index) => (
@@ -115,8 +125,8 @@ const AboutPage = () => {
                 strokeWidth="1"
               ></path>
             </motion.svg>
-          </div>
-          <div className='flex flex-col gap-8 justify-center pb-48'>
+          </motion.div>
+          <motion.div className='flex flex-col gap-8 justify-center pb-48' initial={{x: '-300px', opacity: 0 }} animate={isExperienceRefRefInView ? { x: 0, opacity: 1 }: {}} transition={{delay: 0.2, duration: 0.5}} ref={experienceRef}>
             <h1 className='font-bold text-2xl'>EXPERIENCE</h1>
             <div>
               {experiences.map((experience, idx) => {
@@ -142,12 +152,12 @@ const AboutPage = () => {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
         </div>
         <div className="hidden lg:block w-1/3 sticky top-0 z-30 xl:w-1/2">
-          <Brain />
+          <Brain scrollYProgress={scrollYProgress}/>
         </div>
-    </div>
+      </div>
     </PageAnimation>
   );
 };
