@@ -45,8 +45,8 @@ const ContactPage = () => {
 
   return (
     <PageAnimation>
-      <div className="h-full flex flex-col lg:flex-row px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48">
-        <div className="h-1/2 lg:h-full lg:w-1/2 flex items-center justify-center text-6xl">
+      <div className="h-full flex flex-col lg:flex-row px-4 sm:px-8 md:px-12 lg:px-20 xl:px-48 overflow-scroll pb-6 md:pb-0">
+        <div className="h-1/3 lg:h-full lg:w-1/2 flex items-center justify-center text-6xl text-center">
           <div>
             {sayHello.split('').map((letter, idx) => (
               <motion.span 
@@ -59,10 +59,10 @@ const ContactPage = () => {
               </motion.span>
             ))}
             <span>{' '}</span>
-            <span>😏</span>
+            <span>👋🏻</span>
           </div>
         </div>
-        <form onSubmit={sendEmail} ref={form} className="h-1/2 lg:h-full lg:w-1/2 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-24">
+        <form onSubmit={sendEmail} ref={form} className="h-2/3 lg:h-full lg:w-1/2 bg-red-50 rounded-xl text-xl flex flex-col gap-8 justify-center p-6 md:p-24 relative">
           <span>Dear Hernán Cote</span>
           <textarea 
             rows={6} 
@@ -91,8 +91,10 @@ const ContactPage = () => {
               />
             )}
           </button>
-          {isSuccess && <span className='text-green-600 font-semibold'>Your message was sent successfully</span>}
-          {error && <span className='text-red-600 font-semibold'>{error}</span>}
+          <div className='absolute bottom-1'>
+            {isSuccess && <span className='text-green-600 font-semibold'>Your message was sent successfully</span>}
+            {error && <span className='text-red-600 font-semibold'>{error}</span>}
+          </div>
         </form>
       </div>
     </PageAnimation>
